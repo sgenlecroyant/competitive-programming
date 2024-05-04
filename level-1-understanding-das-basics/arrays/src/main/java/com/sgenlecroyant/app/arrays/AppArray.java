@@ -1,10 +1,5 @@
-package com.sgenlecroyant.app;
+package com.sgenlecroyant.app.arrays;
 
-/**
- * An abstract data type to implement how arrays work behind the curtains
- *
- * @param <T> a generic type to make it suitable to store any data type that exists
- */
 @SuppressWarnings("unchecked")
 public class AppArray<T> {
     private T[] data;
@@ -38,8 +33,18 @@ public class AppArray<T> {
          * values in this.data[index]
          */
         System.out.println("====PRINT ARRAY===");
-        for (int i = 0; i < this.count; i++){
+        for (int i = 0; i < this.count; i++) {
             System.out.println(this.data[i]);
         }
     }
+
+    public int indexOf(T value) {
+        for (int i = 0; i < this.count; i++) {
+            if (this.data[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
+
