@@ -50,4 +50,20 @@ class AppArrayTest {
         Assertions.assertThat(this.appArray.indexOf(10))
                 .isEqualTo(0);
     }
+
+    @Test
+    void shouldContainItemX() {
+        this.appArray.add(10);
+        this.appArray.add(20);
+
+        Assertions.assertThat(this.appArray.contains(10)).isTrue();
+    }
+
+    @Test
+    void shouldNotContainItemX() {
+        this.appArray.add(10);
+        this.appArray.add(20);
+
+        Assertions.assertThat(this.appArray.contains(100)).isFalse();
+    }
 }

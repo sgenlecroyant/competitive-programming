@@ -50,5 +50,9 @@ public class AppArray<T> {
     public int getSize(){
         return this.count;
     }
+
+    public boolean contains(T value){
+        return this.indexOf(value) >= 0;
+    }
 }
 
