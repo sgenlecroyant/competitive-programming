@@ -77,4 +77,14 @@ class AppArrayTest {
         Assertions.assertThat(firstItem).isEqualTo(value);
     }
 
+    @Test
+    void shouldAddLast() {
+        int value = 10;
+        this.appArray.addFirst(value);
+        int lastValue = 100;
+        this.appArray.addLast(lastValue);
+        Integer lastItem = this.appArray.getLast();
+        Assertions.assertThat(lastValue).isEqualTo(this.appArray.getLast());
+    }
+
 }

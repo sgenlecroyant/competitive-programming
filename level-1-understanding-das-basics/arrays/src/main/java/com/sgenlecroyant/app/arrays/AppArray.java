@@ -112,4 +112,11 @@ public class AppArray<T> {
         }
         return this.data[0];
     }
+
+    public T getLast() {
+        if (this.count <= 0){
+            throw new RuntimeException("Array is empty");
+        }
+        return this.data[this.count-1];
+    }
 }
