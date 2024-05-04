@@ -1,5 +1,7 @@
 package com.sgenlecroyant.app.arrays;
 
+import java.util.Arrays;
+
 @SuppressWarnings("unchecked")
 public class AppArray<T> {
     private T[] data;
@@ -17,14 +19,18 @@ public class AppArray<T> {
 
     public void add(T value) {
         if (this.count >= this.data.length) {
-            T[] newArray = (T[]) new Object[this.count + (this.count / 2)];
-
-            for (int i = 0; i < this.count; i++) {
-                newArray[i] = this.data[i];
-            }
-            this.data = newArray;
+            resizeArray();
         }
         this.data[this.count++] = value;
+    }
+
+    private void resizeArray() {
+        T[] newArray = (T[]) new Object[this.count + (this.count / 2)];
+
+        for (int i = 0; i < this.count; i++) {
+            newArray[i] = this.data[i];
+        }
+        this.data = newArray;
     }
 
     public void doPrint() {
@@ -34,7 +40,7 @@ public class AppArray<T> {
          */
         System.out.println("====PRINT ARRAY===");
         for (int i = 0; i < this.count; i++) {
-            System.out.println(this.data[i]);
+            System.out.println(this.data[i]+ " at index: " +i);
         }
     }
 
@@ -47,12 +53,63 @@ public class AppArray<T> {
         return -1;
     }
 
-    public int getSize(){
+    public int getSize() {
         return this.count;
     }
 
-    public boolean contains(T value){
+    public boolean contains(T value) {
         return this.indexOf(value) >= 0;
     }
-}
 
+    public boolean addFirst(T value) {
+
+        if (this.count <= 0) {
+            this.data[this.count++] = value;
+            return true;
+        }
+        this.addAt(0, value);
+        return true;
+    }
+
+    public void addAt(int index, T value) {
+        if (this.count >= this.data.length){
+            this.resizeArray();
+        }
+        for(int i = this.count; i > index; i--){
+            this.data[i] = this.data[i-1];
+        }
+        this.data[index] = value;
+        this.count++;
+    }
+
+    public void addLast(T value){
+        this.addAt(this.count,value);
+    }
+
+    public int getLength() {
+        return this.data.length;
+    }
+
+    public void removeAt(int index){
+        if (index < 0 || index >= this.count){
+            throw new RuntimeException("Index Out of bounds: " +index);
+        }
+
+        for (int i = index; i < this.count; i++){
+            this.data[i] = this.data[i+1];
+        }
+        this.count--;
+        System.out.println("==done removing===");
+    }
+
+    public T[] getArray() {
+        return this.data;
+    }
+
+    public T getFirst() {
+        if (this.count <= 0){
+            throw new RuntimeException("Array is empty");
+        }
+        return this.data[0];
+    }
+}

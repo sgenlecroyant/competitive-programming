@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 class AppArrayTest {
 
     private AppArray<Integer> appArray;
@@ -24,7 +26,7 @@ class AppArrayTest {
     }
 
     @Test
-    public void shouldResizeArrayAndAddItem(){
+    public void shouldResizeArrayAndAddItem() {
         int currentSize = this.appArray.getSize();
         this.appArray.add(10);
         this.appArray.add(20);
@@ -66,4 +68,13 @@ class AppArrayTest {
 
         Assertions.assertThat(this.appArray.contains(100)).isFalse();
     }
+
+    @Test
+    void shouldAddFirst() {
+        int value = 10;
+        this.appArray.addFirst(value);
+        Integer firstItem = this.appArray.getFirst();
+        Assertions.assertThat(firstItem).isEqualTo(value);
+    }
+
 }
