@@ -24,6 +24,18 @@ class AppArrayTest {
     }
 
     @Test
+    public void shouldResizeArrayAndAddItem(){
+        int currentSize = this.appArray.getSize();
+        this.appArray.add(10);
+        this.appArray.add(20);
+        this.appArray.add(30);
+        this.appArray.add(40);
+
+        Assertions.assertThat(currentSize).isLessThan(this.appArray.getSize());
+
+    }
+
+    @Test
     void shouldReturnNegativeIndexOfFirstItemOccurrence() {
         this.appArray.add(10);
 
