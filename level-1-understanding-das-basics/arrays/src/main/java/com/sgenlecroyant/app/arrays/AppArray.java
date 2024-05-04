@@ -46,5 +46,9 @@ public class AppArray<T> {
         }
         return -1;
     }
+
+    public int getSize(){
+        return this.count;
+    }
 }
 
