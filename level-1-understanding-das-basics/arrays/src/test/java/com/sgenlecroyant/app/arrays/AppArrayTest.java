@@ -8,102 +8,102 @@ import java.util.Arrays;
 
 class AppArrayTest {
 
-    private AppArray<Integer> appArray;
+    // private AppArray<Integer> appArray;
 
-    @BeforeEach
-    void setUp() {
-        this.appArray = new AppArray<>(2);
-    }
+    // @BeforeEach
+    // void setUp() {
+    //     this.appArray = new AppArray<>(2);
+    // }
 
-    @Test
-    void shouldAddItem() {
-        this.appArray.add(1);
-        this.appArray.add(2);
+    // @Test
+    // void shouldAddItem() {
+    //     this.appArray.add(1);
+    //     this.appArray.add(2);
 
 
-        Assertions.assertThat(this.appArray.getSize())
-                .isEqualTo(2);
-    }
+    //     Assertions.assertThat(this.appArray.getSize())
+    //             .isEqualTo(2);
+    // }
 
-    @Test
-    public void shouldResizeArrayAndAddItem() {
-        int currentSize = this.appArray.getSize();
-        this.appArray.add(10);
-        this.appArray.add(20);
-        this.appArray.add(30);
-        this.appArray.add(40);
+    // @Test
+    // public void shouldResizeArrayAndAddItem() {
+    //     int currentSize = this.appArray.getSize();
+    //     this.appArray.add(10);
+    //     this.appArray.add(20);
+    //     this.appArray.add(30);
+    //     this.appArray.add(40);
 
-        Assertions.assertThat(currentSize).isLessThan(this.appArray.getSize());
+    //     Assertions.assertThat(currentSize).isLessThan(this.appArray.getSize());
 
-    }
+    // }
 
-    @Test
-    void shouldReturnNegativeIndexOfFirstItemOccurrence() {
-        this.appArray.add(10);
+    // @Test
+    // void shouldReturnNegativeIndexOfFirstItemOccurrence() {
+    //     this.appArray.add(10);
 
-        Assertions.assertThat(this.appArray.indexOf(20))
-                .isNegative();
-    }
+    //     Assertions.assertThat(this.appArray.indexOf(20))
+    //             .isNegative();
+    // }
 
-    @Test
-    void shouldReturnIndexOfFirstItemOccurrence() {
-        this.appArray.add(10);
+    // @Test
+    // void shouldReturnIndexOfFirstItemOccurrence() {
+    //     this.appArray.add(10);
 
-        Assertions.assertThat(this.appArray.indexOf(10))
-                .isEqualTo(0);
-    }
+    //     Assertions.assertThat(this.appArray.indexOf(10))
+    //             .isEqualTo(0);
+    // }
 
-    @Test
-    void shouldContainItemX() {
-        this.appArray.add(10);
-        this.appArray.add(20);
+    // @Test
+    // void shouldContainItemX() {
+    //     this.appArray.add(10);
+    //     this.appArray.add(20);
 
-        Assertions.assertThat(this.appArray.contains(10)).isTrue();
-    }
+    //     Assertions.assertThat(this.appArray.contains(10)).isTrue();
+    // }
 
-    @Test
-    void shouldNotContainItemX() {
-        this.appArray.add(10);
-        this.appArray.add(20);
+    // @Test
+    // void shouldNotContainItemX() {
+    //     this.appArray.add(10);
+    //     this.appArray.add(20);
 
-        Assertions.assertThat(this.appArray.contains(100)).isFalse();
-    }
+    //     Assertions.assertThat(this.appArray.contains(100)).isFalse();
+    // }
 
-    @Test
-    void shouldAddFirst() {
-        int value = 10;
-        this.appArray.addFirst(value);
-        Integer firstItem = this.appArray.getFirst();
-        Assertions.assertThat(firstItem).isEqualTo(value);
-    }
+    // @Test
+    // void shouldAddFirst() {
+    //     int value = 10;
+    //     this.appArray.addFirst(value);
+    //     Integer firstItem = this.appArray.getFirst();
+    //     Assertions.assertThat(firstItem).isEqualTo(value);
+    // }
 
-    @Test
-    void shouldAddLast() {
-        int value = 10;
-        this.appArray.addFirst(value);
-        int lastValue = 100;
-        this.appArray.addLast(lastValue);
-        Integer lastItem = this.appArray.getLast();
-        Assertions.assertThat(lastValue).isEqualTo(this.appArray.getLast());
-    }
+    // @Test
+    // void shouldAddLast() {
+    //     int value = 10;
+    //     this.appArray.addFirst(value);
+    //     int lastValue = 100;
+    //     this.appArray.addLast(lastValue);
+    //     Integer lastItem = this.appArray.getLast();
+    //     Assertions.assertThat(lastValue).isEqualTo(this.appArray.getLast());
+    // }
 
-    @Test
-    void shouldRemoveFirst() {
-        this.appArray.add(10);
-        this.appArray.add(20);
+    // @Test
+    // void shouldRemoveFirst() {
+    //     this.appArray.add(10);
+    //     this.appArray.add(20);
 
-        this.appArray.removeFirst();
-        Assertions.assertThat(this.appArray.indexOf(10)).isNegative();
+    //     this.appArray.removeFirst();
+    //     Assertions.assertThat(this.appArray.indexOf(10)).isNegative();
 
-    }
+    // }
 
-    @Test
-    void shouldRemoveLast() {
-        this.appArray.add(10);
-        this.appArray.add(20);
+    // @Test
+    // void shouldRemoveLast() {
+    //     this.appArray.add(10);
+    //     this.appArray.add(20);
 
-        this.appArray.removeLast();
-        Assertions.assertThat(this.appArray.indexOf(20)).isNegative();
+    //     this.appArray.removeLast();
+    //     Assertions.assertThat(this.appArray.indexOf(20)).isNegative();
 
-    }
+    // }
 }

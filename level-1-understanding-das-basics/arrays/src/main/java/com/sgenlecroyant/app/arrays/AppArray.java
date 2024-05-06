@@ -4,130 +4,66 @@ import java.util.Arrays;
 
 @SuppressWarnings("unchecked")
 public class AppArray<T> {
-    private T[] data;
-    private int count = 0;
-    private static final int DEFAULT_SIZE = 10;
 
-    public AppArray(int initialSize) {
-        // we must cast this back to T[] after we instantiated this as an array of Object since up until here we don't know what type T really is
-        this.data = (T[]) new Object[initialSize];
-    }
+    private T[] data;
+    private int count;
+    private static int DEFAULT_SIZE = 10;
 
     public AppArray() {
         this.data = (T[]) new Object[DEFAULT_SIZE];
     }
 
-    public void add(T value) {
-        if (this.count >= this.data.length) {
-            resizeArray();
-        }
-        this.data[this.count++] = value;
+    public AppArray(int initialSize) {
+        this.data = (T[]) new Object[initialSize];
     }
 
-    private void resizeArray() {
-        T[] newArray = (T[]) new Object[this.count + (this.count / 2)];
+    public int add(T value) {
 
+        if (this.count >= this.data.length) {
+            resize();
+        }
+        this.data[this.count++] = value;
+        return count;
+    }
+
+    public void resize() {
+
+        T[] newArray = (T[]) new Object[this.count * 2];
         for (int i = 0; i < this.count; i++) {
             newArray[i] = this.data[i];
         }
         this.data = newArray;
     }
 
-    public void doPrint() {
-        /**
-         * here we loop up until this.count and not this.data.length since indices from this.count have null
-         * values in this.data[index]
-         */
-        System.out.println("====PRINT ARRAY===");
+    public void print(){
         for (int i = 0; i < this.count; i++) {
-            System.out.println(this.data[i]+ " at index: " +i);
+            System.out.println(this.data[i]);
         }
     }
 
-    public int indexOf(T value) {
-        for (int i = 0; i < this.count; i++) {
-            if (this.data[i] == value) {
-                return i;
-            }
+    public void addFirst(T value){
+        for(int i = this.count - 1; i > 0; i--){
+            this.data[i] = this.data[i+1];
         }
-        return -1;
+        print();
     }
 
-    public int getSize() {
-        return this.count;
-    }
-
-    public boolean contains(T value) {
-        return this.indexOf(value) >= 0;
-    }
-
-    public boolean addFirst(T value) {
-
-        if (this.count <= 0) {
-            this.data[this.count++] = value;
-            return true;
+    public void addAt(int index){
+        if (index < 0 || index >= this.data.length) {
+            throw new ArrayIndexOutOfBoundsException("Invalid index:" +index);
         }
-        this.addAt(0, value);
-        return true;
-    }
 
-    public void addAt(int index, T value) {
-        if (this.count >= this.data.length){
-            this.resizeArray();
+        for(int i = index; i < this.count - 1; i++){
+            System.out.println(this.data[i]+ " => " +this.data[i+1]);
         }
-        for(int i = this.count; i > index; i--){
-            this.data[i] = this.data[i-1];
-        }
-        this.data[index] = value;
-        this.count++;
-    }
-
-    public void addLast(T value){
-        this.addAt(this.count,value);
-    }
-
-    public int getLength() {
-        return this.data.length;
     }
 
     public void removeAt(int index){
-        if (index < 0 || index >= this.count){
-            throw new RuntimeException("Index Out of bounds: " +index);
+        if (index < 0 || index >= this.count) {
+            throw new RuntimeException("Invalid index");
         }
 
-        for (int i = index; i < this.count-1; i++){
-            this.data[i] = this.data[i+1];
-        }
-        this.data[--count] = null;
+        // for(int i = this.count)
     }
 
-    public T[] getArray() {
-        return this.data;
-    }
-
-    public T getFirst() {
-        if (this.count <= 0){
-            throw new RuntimeException("Array is empty");
-        }
-        return this.data[0];
-    }
-
-    public T getLast() {
-        if (this.count <= 0){
-            throw new RuntimeException("Array is empty");
-        }
-        return this.data[this.count-1];
-    }
-
-    public void removeFirst(){
-        this.removeAt(0);
-    }
-
-    public void removeLast(){
-        this.removeAt(this.count-1);
-    }
-
-    public void sayHello(String name){
-
-    }
 }
