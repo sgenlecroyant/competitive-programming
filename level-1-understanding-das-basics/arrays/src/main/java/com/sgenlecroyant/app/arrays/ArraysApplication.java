@@ -13,11 +13,14 @@ public class ArraysApplication {
 		appArray.add(12);
 		appArray.add(13);
 		appArray.add(14);
+		appArray.add(15);
 		appArray.print();
 
-		appArray.addFirst(1000);
-
-		appArray.addAt(0);
+		// appArray.addAt(0, 1000);
+		int index = 0;
+		appArray.removeAt(index);
+		System.out.println("after removing at index " +index);
+		appArray.print();
 	}
 
 }
