@@ -95,11 +95,10 @@ public class AppArray<T> {
             throw new RuntimeException("Index Out of bounds: " +index);
         }
 
-        for (int i = index; i < this.count; i++){
+        for (int i = index; i < this.count-1; i++){
             this.data[i] = this.data[i+1];
         }
-        this.count--;
-        System.out.println("==done removing===");
+        this.data[--count] = null;
     }
 
     public T[] getArray() {
@@ -118,5 +117,17 @@ public class AppArray<T> {
             throw new RuntimeException("Array is empty");
         }
         return this.data[this.count-1];
+    }
+
+    public void removeFirst(){
+        this.removeAt(0);
+    }
+
+    public void removeLast(){
+        this.removeAt(this.count-1);
+    }
+
+    public void sayHello(String name){
+
     }
 }

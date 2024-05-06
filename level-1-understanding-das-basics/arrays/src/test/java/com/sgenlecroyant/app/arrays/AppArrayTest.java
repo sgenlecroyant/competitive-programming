@@ -87,4 +87,23 @@ class AppArrayTest {
         Assertions.assertThat(lastValue).isEqualTo(this.appArray.getLast());
     }
 
+    @Test
+    void shouldRemoveFirst() {
+        this.appArray.add(10);
+        this.appArray.add(20);
+
+        this.appArray.removeFirst();
+        Assertions.assertThat(this.appArray.indexOf(10)).isNegative();
+
+    }
+
+    @Test
+    void shouldRemoveLast() {
+        this.appArray.add(10);
+        this.appArray.add(20);
+
+        this.appArray.removeLast();
+        Assertions.assertThat(this.appArray.indexOf(20)).isNegative();
+
+    }
 }
