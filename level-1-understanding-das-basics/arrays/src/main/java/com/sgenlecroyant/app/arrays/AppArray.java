@@ -1,7 +1,5 @@
 package com.sgenlecroyant.app.arrays;
 
-import java.util.Arrays;
-
 @SuppressWarnings("unchecked")
 public class AppArray<T> {
 
@@ -17,74 +15,110 @@ public class AppArray<T> {
         this.data = (T[]) new Object[initialSize];
     }
 
-    public void add(T value) {
-
-        if (this.count >= this.data.length) {
-            T[] newArray = (T[]) new Object[this.count * 2];
-            for (int i = 0; i < this.count; i++) {
-                newArray[i] = this.data[i];
-            }
-            this.data = newArray;
-        }
-        this.data[this.count++] = value;
-    }
-
-    public void resize() {
-
-        T[] newArray = (T[]) new Object[this.count * 2];
-        for (int i = 0; i < this.count; i++) {
-            newArray[i] = this.data[i];
-        }
-        this.data = newArray;
-    }
-
     public void print() {
+        System.out.println("=====printing=====");
+        System.out.printf("count: %d, size: %d\n",this.count, this.data.length);
         for (int i = 0; i < this.count; i++) {
             System.out.println(this.data[i]);
         }
     }
 
-    public void addFirst(T value) {
-        for (int i = this.count - 1; i > 0; i--) {
-            this.data[i] = this.data[i + 1];
+    public void resizeArray() {
+        T[] resizedArray = (T[]) new Object[this.count * 2];
+
+        for (int i = 0; i < this.count; i++) {
+            resizedArray[i] = this.data[i];
         }
-        print();
+        this.data = resizedArray;
     }
 
-    public void addAt(int index, T value) {
-        if (index < 0 || index >= this.data.length) {
-            throw new ArrayIndexOutOfBoundsException("Invalid index:" + index);
-        }
-
-        System.out.println("count:" + this.count + " and item: " + this.data[this.count]);
-        this.print();
+    public int add(T value) {
         if (this.count >= this.data.length) {
-            T[] newArray = (T[]) new Object[this.count * 2];
-        for (int i = 0; i < this.count; i++) {
-            newArray[i] = this.data[i];
+            resizeArray();
         }
-        this.data = newArray;
+        this.data[this.count++] = value;
+        return this.count - 1;
+    }
+
+    public boolean addAt(int index, T value) {
+
+        if (index > count || index < 0) {
+            throw new RuntimeException("Invalid Index target: " + index);
+        }
+        if (this.count >= this.data.length) {
+            resizeArray();
         }
 
         for (int i = this.count; i > index; i--) {
             this.data[i] = this.data[i - 1];
         }
+
         this.data[index] = value;
         this.count++;
+        return true;
     }
 
-    public void removeAt(int index) {
+    public boolean addFirst(T value) {
+        this.addAt(0, value);
+        return true;
+    }
+
+    public boolean addLast(T value) {
+        this.addAt(this.count, value);
+        return true;
+    }
+
+    public T get(int index){
         if (index < 0 || index >= this.count) {
-            throw new RuntimeException("Invalid index");
+            throw new RuntimeException("Invalid target index");
+        }
+        return this.data[index];
+    }
+
+    public T getFirst(){
+        return this.get(0);
+    }
+
+    public T getLast(){
+        return this.get(this.count - 1);
+    }
+
+    public void removeAt(int index){
+        if (index < 0 || index >= this.count) {
+            throw new RuntimeException("Invalid target index");
         }
 
-        T[] newArray = (T[])new Object[this.count+1];
-
-        for(int i = index; i < this.count; i++){
-            newArray[i+1] = this.data[i];
+        for(int i = index; i < this.count - 1; i++){
+            this.data[i] = this.data[i+1];
         }
-        this.data = newArray;
+        this.data[this.count-1] = null;
         this.count--;
     }
 
+    public int indexOf(T value){
+        for (int i = 0; i < this.count; i++) {
+            if (this.data[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int lastIndexOf(T value){
+        for(int i = this.count - 1; i >= 0; i--){
+            if (this.data[i] == value) {
+                return i;
+            }
+        }
+    
+        return -1;
+    }
+
+    public void removeFirst(){
+        this.removeAt(0);
+    }
+
+    public void removeLast(){
+        this.removeAt(this.count - 1);
+    }
 }
