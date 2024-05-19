@@ -118,8 +118,8 @@ public class AppLinkedList<T> {
         }
 
         LinkedListNode leaderNode = this.grabLeaderNode(this.count-1);
-        this.tail = leaderNode.next;
         leaderNode.next = null;
+        this.tail = leaderNode;
         return true;
     }
     public boolean removeAt(int index){
@@ -138,7 +138,7 @@ public class AppLinkedList<T> {
             this.removeFirst();
             return true;
         }
-        System.out.println("index: " +index+ " and count: " +this.count);
+
         if (index == this.count){
             this.removeLast();
             return true;
